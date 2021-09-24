@@ -125,11 +125,22 @@ resource "aws_security_group_rule" "in-http-private-from-bastion" {
 resource "aws_security_group_rule" "in-http-private-from-bastion-two" {
   type = "ingress"
   description = "Allow HHTP to private from bastion sg"
-  from_port = 80
-  to_port = 80
+  from_port = 8888
+  to_port = 8888
   protocol = "tcp"
   security_group_id = aws_security_group.private-sg-two.id
   source_security_group_id = aws_security_group.general-sg.id
+}
+
+
+resource "aws_security_group_rule" "in-http-private-from-lb-two" {
+  type = "ingress"
+  description = "Allow HTTP to private from Load Balancer sg"
+  from_port = 8888
+  to_port = 8888
+  protocol = "tcp"
+  security_group_id = aws_security_group.private-sg-two.id
+  source_security_group_id = aws_security_group.alb-sg.id
 }
 
 resource "aws_security_group_rule" "in-ssh-private-two-from-bastion" {

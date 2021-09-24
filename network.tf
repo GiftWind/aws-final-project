@@ -54,6 +54,18 @@ resource "aws_subnet" "vpc_two_public_subnet" {
   }
 }
 
+resource "aws_subnet" "vpc_two_public_subnet_two" {
+  vpc_id = aws_vpc.vpc_two.id
+  availability_zone = "us-east-1a"
+  map_public_ip_on_launch = true
+  cidr_block = "10.2.4.0/24"
+  tags = {
+    Name = "VPC Two Public Subnet Two"
+    Owner = "Mark Okulov"
+    Project = "AWS Final Task"
+  }
+}
+
 resource "aws_subnet" "vpc_two_private_subnet" {
   vpc_id = aws_vpc.vpc_two.id
   availability_zone = "us-east-1b"
@@ -131,6 +143,12 @@ resource "aws_route_table" "public_rt_two" {
   }
 }
 
+resource "aws_route" "public_two_to_internet" {
+  route_table_id = aws_route_table.public_rt_two.id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id = aws_internet_gateway.igw_two.id
+}
+
 resource "aws_route" "private_two_to_vpc_one" {
   route_table_id = aws_route_table.private_two_rt.id
   destination_cidr_block = "10.1.0.0/16"
@@ -139,6 +157,10 @@ resource "aws_route" "private_two_to_vpc_one" {
 
 resource "aws_route_table_association" "public_two_rt_assoc" {
   subnet_id = aws_subnet.vpc_two_public_subnet.id
+  route_table_id = aws_route_table.public_rt_two.id
+}
+resource "aws_route_table_association" "public_two_rt_two_assoc" {
+  subnet_id = aws_subnet.vpc_two_public_subnet_two.id
   route_table_id = aws_route_table.public_rt_two.id
 }
 
