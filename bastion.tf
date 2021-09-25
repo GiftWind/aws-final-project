@@ -10,8 +10,8 @@ resource "aws_instance" "bastion" {
   vpc_security_group_ids = [aws_security_group.general-sg.id, aws_security_group.bastion-sg.id]
 
   tags = {
-    Name = "Bastion Host"
-    Owner = "Mark Okulov"
+    Name    = "Bastion Host"
+    Owner   = "Mark Okulov"
     Project = "AWS Final Task"
   }
 }
