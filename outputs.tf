@@ -17,3 +17,8 @@ output "lb-dns-name" {
   description = "Domain name of ELB"
   value       = aws_lb.load_balancer.dns_name
 }
+
+output "bastion-root-block-device" {
+  description = "ARN of root block device"
+  value = aws_instance.bastion.root_block_device[0]
+}

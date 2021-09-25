@@ -30,9 +30,59 @@ resource "aws_iam_role" "S3access" {
       ]
     })
   }
+
+  inline_policy {
+    name = "s3access_to_my_bucket"
+    policy = jsonencode({
+      "Statement" : [
+        {
+          "Action" : [
+            "s3:*"
+          ],
+          "Effect" : "Allow",
+          "Resource" : [
+            "${aws_s3_bucket.s3bucket.arn}"
+          ]
+        }
+      ]
+    })
+  }
+
+  inline_policy {
+    name = "s3fullaccess_to_my_bucket"
+    policy = jsonencode({
+      "Statement" : [
+        {
+          "Action" : [
+            "s3:*"
+          ],
+          "Effect" : "Allow",
+          "Resource" : [
+            "${aws_s3_bucket.s3bucket.arn}"
+          ]
+        }
+      ]
+    })
+  }
+    inline_policy {
+    name = "s3readonlyaccess_to_my_buckets"
+    policy = jsonencode({
+      "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:Get*",
+                "s3:List*"
+            ],
+            "Resource": "*"
+        }
+    ]
+    })
+  }
+    
 }
 
-resource "aws_iam_instance_profile" "Access_S3_to_yum" {
-  name = "Access_S3_to_yum"
+resource "aws_iam_instance_profile" "Access_to_S3" {
+  name = "Access_to_S3"
   role = aws_iam_role.S3access.name
 }

@@ -2,12 +2,13 @@ resource "aws_launch_template" "launch_template" {
   name_prefix = "asg-instance"
   image_id = data.aws_ssm_parameter.linux_latest_ami.value
   instance_type = "t2.micro"
+#   user_data = file("user_data.sh")
 }
 
 resource "aws_autoscaling_group" "asg" {
-  desired_capacity = 1
+  desired_capacity = 0
   max_size = 1
-  min_size = 1
+  min_size = 0
 
   default_cooldown = 300
   health_check_grace_period = 300

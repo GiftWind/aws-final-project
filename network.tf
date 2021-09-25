@@ -1,5 +1,7 @@
 resource "aws_vpc" "vpc_one" {
   cidr_block = "10.1.0.0/16"
+  enable_dns_hostnames = true
+  enable_dns_support = true
   tags = {
     Name    = "VPC One"
     Owner   = "Mark Okulov"
@@ -9,6 +11,8 @@ resource "aws_vpc" "vpc_one" {
 
 resource "aws_vpc" "vpc_two" {
   cidr_block = "10.2.0.0/16"
+  enable_dns_hostnames = true
+  enable_dns_support = true
   tags = {
     Name    = "VPC Two"
     Owner   = "Mark Okulov"
@@ -155,10 +159,12 @@ resource "aws_route" "private_two_to_vpc_one" {
   vpc_peering_connection_id = aws_vpc_peering_connection.foo.id
 }
 
+
 resource "aws_route_table_association" "public_two_rt_assoc" {
   subnet_id      = aws_subnet.vpc_two_public_subnet.id
   route_table_id = aws_route_table.public_rt_two.id
 }
+
 resource "aws_route_table_association" "public_two_rt_two_assoc" {
   subnet_id      = aws_subnet.vpc_two_public_subnet_two.id
   route_table_id = aws_route_table.public_rt_two.id
