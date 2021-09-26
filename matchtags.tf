@@ -1,7 +1,7 @@
 resource "aws_cloudwatch_event_rule" "daily_invocation" {
   name        = "invoke-match-tags-daily"
   description = "Invoke lambda to match the tags daily"
-  schedule_expression = "rate(5 minutes)"
+  schedule_expression = "rate(24 hours)"
 }
 
 resource "aws_cloudwatch_event_target" "daily-invokelambda" {
