@@ -5,7 +5,7 @@ resource "aws_instance" "private_instance_vpc_two" {
   subnet_id              = aws_subnet.vpc_two_private_subnet.id
   vpc_security_group_ids = [aws_security_group.general-sg-vpc-two.id, aws_security_group.private-sg-two.id]
   iam_instance_profile   = aws_iam_instance_profile.Access_to_S3.name
-  user_data              = templatefile("user_data.sh", {})
+  user_data              = templatefile("user_data_private.sh", {})
   tags = {
     Name    = "Private Instance VPC Two"
     Owner   = "Mark Okulov"
@@ -20,7 +20,7 @@ resource "aws_instance" "private_instance_vpc_two_2" {
   subnet_id              = aws_subnet.vpc_two_private_subnet_two.id
   vpc_security_group_ids = [aws_security_group.general-sg-vpc-two.id, aws_security_group.private-sg-two.id]
   iam_instance_profile   = aws_iam_instance_profile.Access_to_S3.name
-  user_data              = templatefile("user_data.sh", {})
+  user_data              = templatefile("user_data_private.sh", {})
   tags = {
     Name    = "Private Instance VPC Two"
     Owner   = "Mark Okulov"

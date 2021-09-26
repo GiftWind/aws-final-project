@@ -6,7 +6,6 @@ resource "aws_s3_bucket" "s3bucket" {
     enabled = true
   }
 
-  
   lifecycle_rule {
     enabled = true
 
@@ -24,4 +23,4 @@ resource "aws_s3_bucket" "s3bucket" {
 resource "aws_vpc_endpoint" "s3-endpoint" {
   vpc_id = aws_vpc.vpc_two.id
   service_name = "com.amazonaws.us-east-1.s3"
-  }
+}

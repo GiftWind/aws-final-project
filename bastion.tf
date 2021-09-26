@@ -9,7 +9,7 @@ resource "aws_instance" "bastion" {
   subnet_id = aws_subnet.vpc_one_public_subnet.id
   vpc_security_group_ids = [aws_security_group.general-sg.id, aws_security_group.bastion-sg.id]
   #iam_instance_profile   = aws_iam_instance_profile.Access_to_EBS.name
-
+  user_data = templatefile("user_data_bastion.sh", {})
   tags = {
     Name    = "Bastion Host"
     Owner   = "Mark Okulov"

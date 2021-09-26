@@ -3,6 +3,11 @@ resource "aws_lb" "load_balancer" {
   load_balancer_type = "application"
   subnets            = [aws_subnet.vpc_two_public_subnet.id, aws_subnet.vpc_two_public_subnet_two.id]
   security_groups    = [aws_security_group.alb-sg.id]
+  tags = {
+    Name    = "Application Load Balancer"
+    Owner   = "Mark Okulov"
+    Project = "AWS Final Task"
+  }
 }
 
 resource "aws_lb_listener" "http-listener" {
