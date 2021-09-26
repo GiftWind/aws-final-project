@@ -27,11 +27,17 @@ resource "aws_iam_role" "iam_role_for_lambda_matchtags" {
   })
 
   inline_policy {
-    name = "match-tags-policy"
+    name = "ec2-describe"
     policy = jsonencode({
       "Statement": [
         {
-           
+            "Effect": "Allow",
+            "Action": [
+                "ec2:DescribeInstances",
+                "ec2:DescribeVolumes",
+                "ec2:CreateTags"
+            ],
+            "Resource": "*"
         }
     ]
     })
