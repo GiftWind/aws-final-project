@@ -41,7 +41,7 @@ resource "aws_iam_role" "iam_role_for_lambda" {
         {
             "Effect": "Allow",
             "Action": [
-                "ec2:Describe*",
+                "ec2:DescribeInstances",
             ],
             "Resource": "*"
         }
@@ -55,11 +55,20 @@ resource "aws_iam_role" "iam_role_for_lambda" {
         {
             "Effect": "Allow",
             "Action": [
-                "route53:*",
+                "route53:ListResourceRecordSets",
+                "route53:ChangeResourceRecordSets",
+                "route53:"
+            ],
+            "Resource": "${aws_route53_zone.private.arn}"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "route53:ListHostedZonesByName",
             ],
             "Resource": "*"
-        }
-    ]
+        },
+      ]
     })
   }
 }

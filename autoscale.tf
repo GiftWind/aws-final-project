@@ -6,6 +6,7 @@ resource "aws_launch_template" "launch_template" {
 }
 
 resource "aws_autoscaling_group" "asg" {
+  name = "Autoscaling Group"
   desired_capacity = 0
   max_size = 1
   min_size = 0
@@ -20,6 +21,31 @@ resource "aws_autoscaling_group" "asg" {
     id = aws_launch_template.launch_template.id
     version = "$Latest"
   }
+
+  tags = concat(
+      [
+          {
+              "key" = "Name"
+              "value" = "ASG"
+              "propagate_at_launch" = true
+          },
+          {
+              "key" = "Owner"
+              "value" = "Mark Okulov"
+              "propagate_at_launch" = true
+          },
+          {
+              "key" = "Project"
+              "value" = "AWS Final Task"
+              "propagate_at_launch" = true
+          },
+          {
+              "key" = "Environment"
+              "value" = "Testing"
+              "propagate_at_launch" = true
+          },
+      ],
+  )
 }
 
 

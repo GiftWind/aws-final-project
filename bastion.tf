@@ -14,6 +14,7 @@ resource "aws_instance" "bastion" {
     Name    = "Bastion Host"
     Owner   = "Mark Okulov"
     Project = "AWS Final Task"
+    Environment = "Testing"
   }
 }
 

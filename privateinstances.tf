@@ -10,6 +10,7 @@ resource "aws_instance" "private_instance_vpc_two" {
     Name    = "Private Instance VPC Two"
     Owner   = "Mark Okulov"
     Project = "AWS Final Task"
+    Environment = "Testing"
   }
 }
 
@@ -25,5 +26,6 @@ resource "aws_instance" "private_instance_vpc_two_2" {
     Name    = "Private Instance VPC Two"
     Owner   = "Mark Okulov"
     Project = "AWS Final Task"
+    Environment = "Testing"
   }
 }

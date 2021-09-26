@@ -1,5 +1,5 @@
 resource "aws_lb" "load_balancer" {
-  name               = "load-balancer"
+  name               = "ApplicationLoadBalancer"
   load_balancer_type = "application"
   subnets            = [aws_subnet.vpc_two_public_subnet.id, aws_subnet.vpc_two_public_subnet_two.id]
   security_groups    = [aws_security_group.alb-sg.id]
